@@ -1,10 +1,10 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const FAQ = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
@@ -43,71 +43,56 @@ const FAQ = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FE6807]/5 to-transparent" />
-
-      <div className="container mx-auto relative z-10 max-w-4xl">
+    <section ref={ref} className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black z-10">
+      <div className="container mx-auto max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{
             opacity: isInView ? 1 : 0,
-            y: isInView ? 0 : 50
+            y: isInView ? 0 : 20
           }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <HelpCircle className="w-12 h-12" style={{ color: '#FE6807' }} />
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-              Perguntas
-            </span>
-            <br />
-            <span style={{ color: '#FE6807' }}>Frequentes</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+            Perguntas <span style={{ color: '#FE6807' }}>Frequentes</span>
           </h2>
-          <p className="text-gray-400 text-lg md:text-xl">
+          <p className="text-gray-500 text-lg">
             Respostas para as dúvidas mais comuns sobre automação
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: isInView ? 1 : 0,
-                y: isInView ? 0 : 50
+                y: isInView ? 0 : 20
               }}
               transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 0.4,
+                delay: index * 0.05
               }}
             >
-              <div className={`rounded-xl bg-gradient-to-br from-white/5 to-white/[0.02] border transition-all duration-300 overflow-hidden ${
-                openIndex === index ? 'border-[#FE6807]/50 shadow-lg shadow-[#FE6807]/10' : 'border-white/10'
+              <div className={`rounded-lg bg-white/[0.02] border transition-all duration-300 overflow-hidden ${
+                openIndex === index ? 'border-white/10' : 'border-white/5'
               }`}>
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full p-6 flex items-start justify-between gap-4 text-left hover:bg-white/[0.02] transition-colors duration-200 group"
+                  className="w-full p-5 flex items-start justify-between gap-4 text-left hover:bg-white/[0.02] transition-colors duration-200"
                 >
-                  <div className="flex-1">
-                    <h3 className={`text-lg md:text-xl font-semibold transition-colors duration-300 ${
-                      openIndex === index ? 'text-[#FE6807]' : 'text-white group-hover:text-[#FE6807]'
-                    }`}>
-                      {faq.question}
-                    </h3>
-                  </div>
+                  <h3 className="text-lg font-semibold text-white flex-1">
+                    {faq.question}
+                  </h3>
                   <motion.div
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2 }}
                     className="flex-shrink-0"
                   >
-                    <ChevronDown className={`w-6 h-6 transition-colors duration-300 ${
-                      openIndex === index ? 'text-[#FE6807]' : 'text-gray-400 group-hover:text-[#FE6807]'
+                    <ChevronDown className={`w-5 h-5 transition-colors duration-200 ${
+                      openIndex === index ? 'text-[#FE6807]' : 'text-gray-500'
                     }`} />
                   </motion.div>
                 </button>
@@ -118,12 +103,12 @@ const FAQ = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6">
-                        <div className="pt-4 border-t border-white/10">
-                          <p className="text-gray-400 leading-relaxed">
+                      <div className="px-5 pb-5">
+                        <div className="pt-3 border-t border-white/5">
+                          <p className="text-gray-500 text-sm leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>
@@ -136,24 +121,23 @@ const FAQ = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{
             opacity: isInView ? 1 : 0,
-            y: isInView ? 0 : 50
+            y: isInView ? 0 : 20
           }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 text-center"
         >
-          <div className="inline-flex flex-col gap-4 p-8 rounded-2xl bg-gradient-to-br from-[#FE6807]/10 to-transparent border border-[#FE6807]/30">
-            <p className="text-xl text-white font-semibold">
+          <div className="inline-flex flex-col gap-3 p-6 rounded-lg bg-white/[0.02] border border-white/5">
+            <p className="text-lg text-white font-semibold">
               Ainda tem dúvidas?
             </p>
-            <p className="text-gray-400">
+            <p className="text-gray-500 text-sm">
               Vamos conversar! Estou aqui para ajudar você a encontrar a melhor solução
             </p>
-            <button className="px-8 py-4 bg-gradient-to-r from-[#FE6807] to-[#FF8C42] rounded-xl text-white font-bold hover:shadow-lg hover:shadow-[#FE6807]/50 transition-all duration-300 hover:scale-105">
+            <button className="px-6 py-3 bg-[#FE6807] rounded-lg text-white font-semibold hover:bg-[#FF8C42] transition-all duration-300">
               Falar com Especialista
             </button>
           </div>

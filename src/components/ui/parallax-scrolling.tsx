@@ -83,11 +83,11 @@ export function ParallaxComponent() {
               decoding="async"
             />
             <div data-parallax-layer="3" className="parallax__layer-title">
-              <div className="flex flex-col items-center gap-3 sm:gap-4 -translate-y-16 sm:-translate-y-20 md:-translate-y-24">
-                <div className="relative px-12 py-8">
-                  <div className="absolute inset-0 bg-black/80 blur-[80px] scale-125"></div>
+              <div className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4 -translate-y-12 sm:-translate-y-16 md:-translate-y-20 lg:-translate-y-24 px-4">
+                <div className="relative px-6 sm:px-8 md:px-12 py-4 sm:py-6 md:py-8">
+                  <div className="absolute inset-0 bg-black/80 blur-[60px] sm:blur-[80px] scale-125"></div>
                   <h1
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.2em] sm:tracking-[0.3em] uppercase relative z-10"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-light tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.25em] lg:tracking-[0.3em] uppercase relative z-10 text-center"
                     style={{
                       color: '#FE6807'
                     }}
@@ -95,7 +95,7 @@ export function ParallaxComponent() {
                     INTELFLUX
                   </h1>
                 </div>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-[0.15em] sm:tracking-[0.2em] text-white/90 uppercase -mt-4 sm:-mt-6">
+                <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-light tracking-[0.1em] sm:tracking-[0.15em] md:tracking-[0.2em] text-white/90 uppercase -mt-2 sm:-mt-4 md:-mt-6 text-center px-4">
                   AI SOLUTIONS AGENCY
                 </p>
               </div>

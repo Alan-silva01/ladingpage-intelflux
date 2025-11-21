@@ -5,8 +5,8 @@ import { useRef } from "react";
 
 const ScrollHeroSection = () => {
   const titleRef = useRef(null);
-  const isTitleInView = useInView(titleRef, { once: false, amount: 0.5 });
-  // Testimonials atualizados
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.3 });
+
   const testimonials = [
     {
       quote: "Eu automatizo seu WhatsApp, e-mails e suporte para responder 24/7 sem esforço.",
@@ -36,58 +36,33 @@ const ScrollHeroSection = () => {
 
   return (
     <div className="relative">
+      <style>{`
+        :root {
+          --accent: hsl(18, 99%, 51%) !important;
+        }
+      `}</style>
       <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
 
       <motion.div
         ref={titleRef}
-        initial={{ opacity: 0, y: 80, scale: 0.9 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{
           opacity: isTitleInView ? 1 : 0,
-          y: isTitleInView ? 0 : 80,
-          scale: isTitleInView ? 1 : 0.9
+          y: isTitleInView ? 0 : 20
         }}
         transition={{
-          duration: 1,
-          ease: [0.25, 0.46, 0.45, 0.94],
-          delay: 0.2
+          duration: 0.5,
+          ease: "easeOut"
         }}
         className="text-center pt-8 pb-4 mt-20"
       >
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.15em] sm:tracking-[0.2em] uppercase" style={{ color: '#FE6807' }}>
-          <motion.span
-            initial={{ opacity: 0, x: -50 }}
-            animate={{
-              opacity: isTitleInView ? 1 : 0,
-              x: isTitleInView ? 0 : -50
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.4,
-              ease: "easeOut"
-            }}
-            className="inline-block"
-          >
-            Passos para Automatizar
-          </motion.span>
+          Passos para Automatizar
           <br />
-          <motion.span
-            initial={{ opacity: 0, x: 50 }}
-            animate={{
-              opacity: isTitleInView ? 1 : 0,
-              x: isTitleInView ? 0 : 50
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.6,
-              ease: "easeOut"
-            }}
-            className="inline-block"
-          >
-            Sua Empresa ou Negócio
-          </motion.span>
+          Sua Empresa ou Negócio
         </h2>
       </motion.div>
-      <div className="-mt-32">
+      <div className="-mt-[450px]">
         <WordHeroPage
           items={[
             'entender.',
@@ -105,7 +80,7 @@ const ScrollHeroSection = () => {
           spaceVh={50}
           debug={false}
           showFooter={false}
-          taglineHTML="desenvolvo soluções inteligentes que <br />simplificam processos e <span style='color: #FE6807'>otimizam rotinas</span>."
+          taglineHTML="Está pronto para aumentar o lucro de sua empresa com nossos serviços?"
         />
       </div>
     </div>
